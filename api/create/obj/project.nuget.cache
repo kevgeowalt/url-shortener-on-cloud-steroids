@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "CKNmXO4lncVwEdAvff6JyPoKiUWxiqgtVd6sZqiDbDExDnJ0daY+1Rprcl11R9yxj4+juR0iYPF5vl6r94nQMQ==",
+  "success": true,
+  "projectFilePath": "/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/create.csproj",
+  "expectedPackageFiles": [
+    "/Users/aliciabrown-walters/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/aliciabrown-walters/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/aliciabrown-walters/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/aliciabrown-walters/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/aliciabrown-walters/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/aliciabrown-walters/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
