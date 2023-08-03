@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "FxM9eqSZpnlEDcgrWI/x6zzPmSoBAm+7EukOcQfpCXSlgLJfq7y87C1+E3MR9VaRlVMKNODo9gpKrF8fHYQdMg==",
+  "success": true,
+  "projectFilePath": "/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/shared.csproj",
+  "expectedPackageFiles": [
+    "/Users/aliciabrown-walters/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
