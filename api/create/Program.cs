@@ -1,6 +1,7 @@
 // Azure App Configuration using statements
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using shared.services;
 using Shortener;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,10 @@ builder.Services.AddSwaggerGen();
 string appConnectionString = builder.Configuration.GetConnectionString("AppConfig");
 builder.Configuration.AddAzureAppConfiguration(appConnectionString);
 builder.Services.Configure<Settings>(builder.Configuration.GetSection("UrlShort:Settings"));
+
+//Shared [Azure Storage tables]
+var configStr = builder.Configuration.GetValue<string>("UrlShort:Settings:Storage001SAS");
+builder.Services.AddSingleton<IUrlService>(service => new UrlService(configStr, "globalurls"));
 
 var app = builder.Build();
 

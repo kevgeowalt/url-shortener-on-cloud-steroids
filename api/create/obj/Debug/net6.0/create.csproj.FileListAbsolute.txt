@@ -35,3 +35,11 @@
 /Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/Microsoft.Extensions.Configuration.AzureAppConfiguration.dll
 /Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/System.Memory.Data.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/Microsoft.Azure.Cosmos.Table.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/Microsoft.Azure.DocumentDB.Core.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/Microsoft.OData.Core.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/Microsoft.OData.Edm.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/Microsoft.Spatial.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/runtimes/win7-x64/native/Cosmos.CRTCompat.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/runtimes/win7-x64/native/Microsoft.Azure.Documents.ServiceInterop.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/create/bin/Debug/net6.0/Azure.Data.Tables.dll

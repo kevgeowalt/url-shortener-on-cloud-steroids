@@ -3,6 +3,10 @@ using shared.services;
 namespace shared.Models{
     public class CreateResult<T> : IServiceResult<T>
     {
+        public CreateResult()
+        {
+            
+        }
         public CreateResult(T data, bool success, string message)
         {
             Data = data;
