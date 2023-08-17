@@ -1,6 +1,7 @@
 
 using System.Text;
 using Azure.Data.Tables;
+using Azure.Identity;
 using shared.Entities;
 using shared.Models;
 
@@ -13,10 +14,11 @@ namespace shared.services
         dotnet add package Azure.Data.tables
         */
         private readonly string _connectionString = string.Empty;
+        private readonly string _tableUri;
         private readonly string _tableName = string.Empty;
-        public UrlService(string connectionString, string tableName)
+        public UrlService(string tableUri, string tableName)
         {
-            _connectionString = connectionString;
+            _tableUri = tableUri;
             _tableName = string.IsNullOrWhiteSpace(tableName) ? "" : tableName;
         }
         public async Task<IServiceResult<string>> RetrieveAsync(string id)
@@ -76,7 +78,7 @@ namespace shared.services
 
         public async Task<TableClient> GetTableClientAsync()
         {
-            TableClient tableClient = new TableClient(_connectionString, _tableName);
+            var tableClient = new TableClient(new Uri(_tableUri),_tableName,new DefaultAzureCredential());
             return tableClient;
         }
 

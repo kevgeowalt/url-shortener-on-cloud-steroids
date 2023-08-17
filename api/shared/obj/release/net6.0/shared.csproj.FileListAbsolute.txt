@@ -1,0 +1,12 @@
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/bin/release/net6.0/shared.deps.json
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/bin/release/net6.0/shared.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/bin/release/net6.0/shared.pdb
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/obj/release/net6.0/shared.csproj.AssemblyReference.cache
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/obj/release/net6.0/shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/obj/release/net6.0/shared.AssemblyInfoInputs.cache
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/obj/release/net6.0/shared.AssemblyInfo.cs
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/obj/release/net6.0/shared.csproj.CoreCompileInputs.cache
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/obj/release/net6.0/shared.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/obj/release/net6.0/refint/shared.dll
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/obj/release/net6.0/shared.pdb
+/Users/aliciabrown-walters/Documents/Kevoy Walters/github-projects/url-shortener-on-cloud-steroids/api/shared/obj/release/net6.0/ref/shared.dll

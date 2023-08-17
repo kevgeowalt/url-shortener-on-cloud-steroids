@@ -21,8 +21,8 @@ builder.Configuration.AddAzureAppConfiguration(appConnectionString);
 builder.Services.Configure<Settings>(builder.Configuration.GetSection("UrlShort:Settings"));
 
 //Shared [Azure Storage tables]
-var configStr = builder.Configuration.GetValue<string>("UrlShort:Settings:Storage001SAS");
-builder.Services.AddSingleton<IUrlService>(service => new UrlService(configStr, "globalurls"));
+var storageUrl = builder.Configuration.GetValue<string>("UrlShort:Settings:Storage001");
+builder.Services.AddSingleton<IUrlService>(service => new UrlService(storageUrl,"globalurls"));
 
 var app = builder.Build();
 
