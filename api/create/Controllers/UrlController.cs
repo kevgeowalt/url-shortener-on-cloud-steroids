@@ -27,7 +27,7 @@ namespace Shortener.Controllers
         public async Task<IActionResult> ShortenUrl(UrlRequest model)
         {
             var createResult = await urlService.ShortenAsync(model.LongUrl);
-            return Ok();
+            return Ok(createResult);
         }
     }
 }

@@ -1,6 +1,6 @@
 
+using System.Text;
 using Azure.Data.Tables;
-using shared.Entities;
 using shared.Models;
 
 namespace shared.services
@@ -28,10 +28,14 @@ namespace shared.services
             IServiceResult<string> result = new CreateResult<string>() { Data = string.Empty, Success = false, Message = string.Empty };
             try
             {
-                string randomCode = string.Empty;
+                string randomCode = GenerateRandomStr();
 
                 var client = await GetTableClientAsync();
-                var entity = new TableEntity(randomCode, longUrl);
+                var entity = new TableEntity(randomCode, longUrl
+                            .Replace("/","{forward}")
+                            .Replace("\\","backward")
+                            .Replace("#","numbersgn")
+                            .Replace("?","questionmrk"));
 
                 var newResult = await AddAsync(client, entity);
 
@@ -61,6 +65,21 @@ namespace shared.services
         {
             var result = client.AddEntity(entity);
             return result.Status.ToString().StartsWith("20") ? true : false;
+        }
+
+        public string GenerateRandomStr()
+        {
+            const string src = "abcdefghijklmnopqrstuvwxyz0123456789";
+            int length = 5;
+            var sb = new StringBuilder();
+            Random RNG = new Random();
+            for (var i = 0; i < length; i++)
+            {
+                var c = src[RNG.Next(0, src.Length)];
+                sb.Append(c);
+            }
+
+            return sb.ToString();
         }
     }
 }
