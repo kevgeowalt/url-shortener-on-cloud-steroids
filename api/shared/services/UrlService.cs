@@ -1,6 +1,7 @@
 
 using System.Text;
 using Azure.Data.Tables;
+using shared.Entities;
 using shared.Models;
 
 namespace shared.services
@@ -20,7 +21,21 @@ namespace shared.services
         }
         public async Task<IServiceResult<string>> RetrieveAsync(string id)
         {
-            throw new NotImplementedException();
+            IServiceResult<string> result = new CreateResult<string>() { Data = string.Empty, Success = false, Message = string.Empty };
+            try
+            {
+                var client = await GetTableClientAsync();
+                var getResult = await GetAsync(client, id);
+
+                result.Data = getResult;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
         }
 
         public async Task<IServiceResult<string>> ShortenAsync(string longUrl)
@@ -31,11 +46,15 @@ namespace shared.services
                 string randomCode = GenerateRandomStr();
 
                 var client = await GetTableClientAsync();
-                var entity = new TableEntity(randomCode, longUrl
-                            .Replace("/","{forward}")
-                            .Replace("\\","backward")
-                            .Replace("#","numbersgn")
-                            .Replace("?","questionmrk"));
+
+                longUrl = longUrl.Replace("/", "{forward}")
+                            .Replace("\\", "backward")
+                            .Replace("#", "numbersgn")
+                            .Replace("?", "questionmrk");
+
+                var entity = new TableEntity("GENERAL", randomCode){
+                    {"LongUrl", longUrl },
+                };
 
                 var newResult = await AddAsync(client, entity);
 
@@ -63,8 +82,18 @@ namespace shared.services
 
         public async Task<bool> AddAsync(TableClient client, TableEntity entity)
         {
-            var result = client.AddEntity(entity);
+            var result = await client.AddEntityAsync(entity);
             return result.Status.ToString().StartsWith("20") ? true : false;
+        }
+
+        public async Task<string> GetAsync(TableClient client, string code)
+        {
+            Azure.Response<UrlEntity> result = await client.GetEntityAsync<UrlEntity>("GENERAL", code);
+
+            if (string.IsNullOrWhiteSpace(result.Value.RowKey))
+                return string.Empty;
+
+            return result.Value.LongUrl.Replace("{forward}","/").Replace("backward","\\").Replace("numbersgn","?").Replace("questionmrk","?");
         }
 
         public string GenerateRandomStr()

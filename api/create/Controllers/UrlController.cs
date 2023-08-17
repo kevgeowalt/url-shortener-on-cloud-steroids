@@ -8,7 +8,6 @@ using shared.services;
 namespace Shortener.Controllers
 {
     [ApiController]
-    [Route("url")]
     public class UrlController : ControllerBase
     {
         private readonly IOptionsSnapshot<Settings> options;
@@ -28,6 +27,20 @@ namespace Shortener.Controllers
         {
             var createResult = await urlService.ShortenAsync(model.LongUrl);
             return Ok(createResult);
+        }
+
+        [HttpGet("{code}")]
+        public async Task<IActionResult> RetrieveUrl(string code)
+        {
+            string longUrl = string.Empty;
+
+            var result = await urlService.RetrieveAsync(code);
+            longUrl = result.Data;
+
+            if (string.IsNullOrWhiteSpace(longUrl))
+                return BadRequest(new { message = "URL cannot be empty", success = false });
+
+            return RedirectPermanent(longUrl);
         }
     }
 }
