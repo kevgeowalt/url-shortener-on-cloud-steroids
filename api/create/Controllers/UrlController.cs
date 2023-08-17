@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using shared.Helpers;
 using Shortener.Models;
+
+using Microsoft.Extensions.Options;
+using shared.services;
 
 namespace Shortener.Controllers
 {
@@ -7,16 +11,23 @@ namespace Shortener.Controllers
     [Route("url")]
     public class UrlController : ControllerBase
     {
-        public UrlController()
-        {
+        private readonly IOptionsSnapshot<Settings> options;
+        private readonly IUrlService urlService;
+        private Settings _config;
 
+        public UrlController(IOptionsSnapshot<Settings> options, IUrlService urlService)
+        {
+            this.options = options;
+            this.urlService = urlService;
+            _config = options.Value;
         }
 
         [HttpPost]
         [Route("shorten")]
-        public async Task ShortenUrl(UrlRequest model)
+        public async Task<IActionResult> ShortenUrl(UrlRequest model)
         {
-            throw new NotImplementedException();
+            var createResult = await urlService.ShortenAsync(model.LongUrl);
+            return Ok(createResult);
         }
     }
 }
