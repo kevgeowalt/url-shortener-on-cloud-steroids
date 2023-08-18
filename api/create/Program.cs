@@ -22,17 +22,18 @@ builder.Services.Configure<Settings>(builder.Configuration.GetSection("UrlShort:
 
 //Shared [Azure Storage tables]
 var storageUrl = builder.Configuration.GetValue<string>("UrlShort:Settings:Storage001");
-builder.Services.AddSingleton<IUrlService>(service => new UrlService(storageUrl,"globalurls"));
+builder.Services.AddSingleton<IUrlService>(service => new UrlService(storageUrl, "globalurls"));
 
 var app = builder.Build();
+
+// Ensures swagger definition is always available regardless of environment
+app.UseSwagger();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 //app.UseHttpsRedirection();
 
