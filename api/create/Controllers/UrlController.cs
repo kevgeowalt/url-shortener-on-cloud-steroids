@@ -8,6 +8,7 @@ using shared.services;
 namespace Shortener.Controllers
 {
     [ApiController]
+    [Route("/")]
     public class UrlController : ControllerBase
     {
         private readonly IOptionsSnapshot<Settings> options;
