@@ -24,9 +24,9 @@ The project focuses on using the following Azure Cloud Services:
 5. **Azure DevOps - Build Pipelines** _for composing a set of tasks, each of which is performed as a step when our application (API) builds through continuous deployment._
 6. **Azure DevOps - Release Pipelines** - _for deployinf the artifacts after a successufl build_
 7. **Web App Deployment center** _for managaing local GIT deployments from your local machine_
-8. **Web App Deployment Slots** _for managing traffic bewteen different environments and to verify relasese before swapping to production
-_
-9. 
+8. **Web App Deployment Slots** _for managing traffic bewteen different environments and to verify relasese before swapping to production_
+9. **Functions and Storage Queues**
+10. **Azure CLI**
 
 ## 💡 What to Expect in This Repository
 
