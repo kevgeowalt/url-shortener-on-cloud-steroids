@@ -27,6 +27,7 @@ The project focuses on using the following Azure Cloud Services:
 8. **Web App Deployment Slots** _for managing traffic bewteen different environments and to verify relasese before swapping to production_
 9. **Functions and Storage Queues**
 10. **Azure CLI**
+11. **Managed Identitiy / Azure Active Directory (DefaultAzureCredential)**
 
 **Architecture Overwiew**
 ![](/images-readme/UrlShortener.drawio.png)
