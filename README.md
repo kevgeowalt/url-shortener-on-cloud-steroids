@@ -28,6 +28,9 @@ The project focuses on using the following Azure Cloud Services:
 9. **Functions and Storage Queues**
 10. **Azure CLI**
 
+**Architecture Overwiew**
+![](/images-readme/UrlShortener.drawio.png)
+
 ## 💡 What to Expect in This Repository
 
 In this GitHub repository, you'll find the result of my endeavors. I've documented my journey, sharing insights, challenges, and solutions that I encountered along the way. You'll find code snippets, configuration files, and perhaps even a few 'Aha!' moments that I experienced as I navigated through cloud services, containerization, continuous integration, and more.
