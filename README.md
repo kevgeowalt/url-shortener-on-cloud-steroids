@@ -21,6 +21,12 @@ The project focuses on using the following Azure Cloud Services:
 2. **App Services** _platform as a service (PAAS) solution that offers hosting capabilities for apps ruuning on multiple frameworks. The framework used to developed this proejct was .NET 6 LTS._
 3. **API Managament** _service for publishing, securing and managing our web services_
 4. **Storage Accounts (Table Storage)** _for storing and accessing our data through partitions and keys_
+5. **Azure DevOps - Build Pipelines** _for composing a set of tasks, each of which is performed as a step when our application (API) builds through continuous deployment._
+6. **Azure DevOps - Release Pipelines** - _for deployinf the artifacts after a successufl build_
+7. **Web App Deployment center** _for managaing local GIT deployments from your local machine_
+8. **Web App Deployment Slots** _for managing traffic bewteen different environments and to verify relasese before swapping to production
+_
+9. 
 
 ## 💡 What to Expect in This Repository
 
