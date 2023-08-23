@@ -8,7 +8,11 @@ on:
     branches: [ "development" ]
   pull_request:
     branches: [ "development" ]
-
+    
+env:
+  app-name: "urlapi"
+  rg-name: "url-shortener"
+  
 jobs:
   build:
 
@@ -37,3 +41,36 @@ jobs:
         name: webapi
         path: api/create/webapi/**
         if-no-files-found: error
+        
+  deploy_development: 
+    needs: build 
+    runs-on: ubuntu-latest
+
+    environment:
+      name: Development
+      url: ${{steps.deployapi.outputs.webapp_url}}
+
+    steps:
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v2.1.1
+      with:
+        name: webapi
+        path: webapi
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy Web API
+      id: deployapi
+      uses: Azure/webapps-deploy@v2.2.10
+      with:
+        app-name: ${{ env.app-name }}
+        package: webapi
+
+    - name: Logout Azure
+      run: az logout
+        
+      
+      
