@@ -1,22 +1,41 @@
-### URL Shortener (MS Azure edition)
+# Welcome to My Cloud Journey as a newbie ... somewhat 🤔
 
-#### Project Overview
-URL Shortener on cloud steroids is a tool for converting long URLs to shortened versions built and maintained using the cloud services offered by Microsoft Azure. This project explores Azure Cloud from an administration and DevOps perspectives rather than the functionalities of a url shortener. The main focus areas are as follows:
+## ℹ️ About Me
 
- 1. Scalability
- 2. Availability
- 4. Continuous Integration and Deployment/Delivery (CI/CD)
- 5. Infrastructure as Code
- 6. Serverless
+Hello there! Before I tell you about my journey learning Azure Cloud, let me first say I'm Kevoy Walters, an admirer of C# and .NET. I currently have over 3 years of professional expereince in the telecommunications and financial industries. I've had the privilege of working on a variety of projects with so many exceptional and brilliant people.
 
-#### Cloud services used
- - [ ] Azure Web App
- - [ ] Azure App Configuration
- - [ ] Azure API Management
- - [ ] ARM Templates for IaC
- - [ ] Azure Functions
- - [ ] Azure Storage Table
+## ⬆️ Embracing New Horizons 
 
+While I've always had a deep love for traditional software development, I recently embarked on an exciting journey that led me into the realms of cloud development and DevOps. The dynamic and ever-evolving nature of these fields intrigued me, and I decided to dive headfirst into learning more about them.
 
+## ☁️ Discovering Cloud Development and DevOps
 
-> Written with [StackEdit](https://stackedit.io/).
+As I delved into cloud development and DevOps, I realized the immense potential they hold to revolutionize the way we can build, deploy, and manage applications. The ability to scale effortlessly, ensure high availability, and streamline development workflows through automation left me both fascinated and inspired. I already had a close realtionshp with Micsoroft's primary programming language C# so I decided what better way to keep it in the family than using **Microsoft Azure** to satisify my curiosity.
+
+## 🆕 The Birth of a New Project
+
+To put my newfound passion and knowledge into practice, I embarked on an exciting project. This project was not just another coding exercise; it was a chance for me to immerse myself in cloud development and DevOps concepts. I intentionally designed the project in a way that forced me to utilize these principles, pushing me out of my comfort zone and into uncharted territory.
+The point of this project is not focus on its features but how those features are deployed,hosted and managed in the Cloud through Azure.
+The project focuses on using the following Azure Cloud Services:
+1. **App Configuration** _for appsettings and connection string centralization_
+2. **App Services** _platform as a service (PAAS) solution that offers hosting capabilities for apps ruuning on multiple frameworks. The framework used to developed this proejct was .NET 6 LTS._
+3. **API Managament** _service for publishing, securing and managing our web services_
+4. **Storage Accounts (Table Storage)** _for storing and accessing our data through partitions and keys_
+5. **Azure DevOps - Build Pipelines** _for composing a set of tasks, each of which is performed as a step when our application (API) builds through continuous deployment._
+6. **Azure DevOps - Release Pipelines** - _for deployinf the artifacts after a successufl build_
+7. **Web App Deployment center** _for managaing local GIT deployments from your local machine_
+8. **Web App Deployment Slots** _for managing traffic bewteen different environments and to verify relasese before swapping to production_
+9. **Functions and Storage Queues**
+10. **Azure CLI**
+11. **Managed Identitiy / Azure Active Directory (DefaultAzureCredential)**
+
+**Architecture Overwiew**
+![](/images-readme/UrlShortener.drawio.png)
+
+## 💡 What to Expect in This Repository
+
+In this GitHub repository, you'll find the result of my endeavors. I've documented my journey, sharing insights, challenges, and solutions that I encountered along the way. You'll find code snippets, configuration files, and perhaps even a few 'Aha!' moments that I experienced as I navigated through cloud services, containerization, continuous integration, and more.
+
+## ✅ Join Me on this Adventure
+
+Whether you're an experienced developer, a fellow .NET enthusiast, or someone curious about cloud development and DevOps, I invite you to join me on this adventure. Feel free to explore the repository, clone the project, or even contribute your insights and suggestions. Let's learn and grow together as we embrace the exciting world of cloud development and DevOps!
