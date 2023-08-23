@@ -1,0 +1,77 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "development" ]
+  pull_request:
+    branches: [ "development" ]
+    
+env:
+  app-name: "urlapi"
+  rg-name: "url-shortener"
+  
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api/create/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Publish
+      run: dotnet publish create.csproj -c release -o webapi
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: webapi
+        path: api/create/webapi/**
+        if-no-files-found: error
+        
+  deploy_development: 
+    needs: build 
+    runs-on: ubuntu-latest
+
+    environment:
+      name: Development
+      url: ${{steps.deployapi.outputs.webapp_url}}
+
+    steps:
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v2.1.1
+      with:
+        name: webapi
+        path: webapi
+
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy Web API
+      id: deployapi
+      uses: Azure/webapps-deploy@v2.2.10
+      with:
+        app-name: ${{ env.app-name }}
+        package: webapi
+
+    - name: Logout Azure
+      run: az logout
+        
+      
+      
