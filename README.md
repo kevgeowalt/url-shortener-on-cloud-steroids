@@ -39,3 +39,41 @@ In this GitHub repository, you'll find the result of my endeavors. I've document
 ## ✅ Join Me on this Adventure
 
 Whether you're an experienced developer, a fellow .NET enthusiast, or someone curious about cloud development and DevOps, I invite you to join me on this adventure. Feel free to explore the repository, clone the project, or even contribute your insights and suggestions. Let's learn and grow together as we embrace the exciting world of cloud development and DevOps!
+
+## Using Azure to centralize configurations
+
+Since the services offered by Microsoft Azure are in the cloud (accessed over the internet), it is quite impossible to interact with these services without establishing some form of connection from your local machine to the hosted service. These conenctions are usually achieved through either connection strings, Shared Access Signatures or Access Keys. There is also another method of connection that I will talk about later called _**Managed Identity**_. For storing key-value pairs configuration, this project used Azure App Configuration which provides a service to centrally store and secure configuration settings across multiple components.
+
+#### To store connection string for Azure App Configuration service locally:
+``` c#
+dotnet user-secrets init
+dotnet user-secrets set ConnectionStrings:AppConfig "<your_connection_string>"
+```
+
+#### To connect and use Azure App Configuration using .NET 6
+``` c#
+// First create a class to match the values that will be stored in Azure App Configuration explorer
+public class Settings
+{
+    public string Storage001 { get; set; } = string.Empty;
+}
+
+// Read configuration string from local secret 
+string appConnectionString = builder.Configuration.GetConnectionString("AppConfig");
+
+// Add the Azure service to the configuration builder
+builder.Configuration.AddAzureAppConfiguration(appConnectionString);
+
+// Registers the configuration option which Settings class will bind against
+builder.Services.Configure<Settings>(builder.Configuration.GetSection("UrlShort:Settings"));
+
+// use values through dependency injection
+private readonly IOptionsSnapshot<Settings> options;
+
+public Controller(IOptionsSnapshot<Settings> options)
+{
+    this.options = options;
+}
+```
+## Continious Integration/Continuous Deployment (CI/CD)
+#### GitHub Actions
