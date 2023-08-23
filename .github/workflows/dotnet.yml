@@ -35,5 +35,5 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         name: webapi
-        path: api/create/webapi**
+        path: api/create/webapi/**
         if-no-files-found: error
