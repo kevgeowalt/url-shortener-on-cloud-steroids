@@ -13,16 +13,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Microost Azure App Configuration
+//Microsoft Azure App Configuration (secrets)
 // dotnet user-secrets init
 // dotnet user-secrets set ConnectionStrings:AppConfig "<your_connection_string>"
-string appConnectionString = builder.Configuration.GetConnectionString("AppConfig");
-builder.Configuration.AddAzureAppConfiguration(appConnectionString);
-builder.Services.Configure<Settings>(builder.Configuration.GetSection("UrlShort:Settings"));
+// string appConnectionString = builder.Configuration.GetConnectionString("AppConfig");
 
-//Shared [Azure Storage tables]
-var storageUrl = builder.Configuration.GetValue<string>("UrlShort:Settings:Storage001");
-builder.Services.AddSingleton<IUrlService>(service => new UrlService(storageUrl, "globalurls"));
+//Microsoft Azure App Configuration (environment variables - MACOS)
+// export AppConfigurationEndpoint=MyValue
+
+string appConfigurationEndpoint = Environment.GetEnvironmentVariable("AppConfigurationEndpoint") ?? string.Empty;
+builder.Configuration.AddAzureAppConfiguration(appConfigurationEndpoint);
+builder.Services.Configure<Settings>(builder.Configuration.GetSection("shortapi:endpoints"));
+
+//Shared [Azure Storage tables
+var storageUrl = builder.Configuration.GetValue<string>("shortapi:endpoints:tablestorage");
+builder.Services.AddSingleton<IUrlService>(service => new UrlService(storageUrl, "WEBSITEURLS"));
 
 var app = builder.Build();
 
