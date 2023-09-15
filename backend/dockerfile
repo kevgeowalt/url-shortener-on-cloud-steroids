@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 as build
+WORKDIR /app
+COPY . .
+RUN dotnet restore "api/create/create.csproj"
+RUN dotnet publish "api/create/create.csproj" -c release -o /app/published-web-api
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+WORKDIR /app
+COPY --from=build /app/published-web-api /app
+ENTRYPOINT [ "dotnet","/app/create.dll" ]
