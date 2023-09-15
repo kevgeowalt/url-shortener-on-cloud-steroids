@@ -1,10 +1,24 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 as build
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-COPY . .
-RUN dotnet restore "api/create/create.csproj"
-RUN dotnet publish "api/create/create.csproj" -c release -o /app/published-web-api
+EXPOSE 443
+EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
+ENV ASPNETCORE_URLS=http://+:5002
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+ARG configuration=Release
+WORKDIR /src
+COPY ["backend/shortapi.csproj", "backend/"]
+RUN dotnet restore "backend/shortapi.csproj"
+COPY . .
+WORKDIR "/src/backend"
+RUN dotnet build "shortapi.csproj" -c $configuration -o /app/build
+
+FROM build AS publish
+ARG configuration=Release
+RUN dotnet publish "shortapi.csproj" -c $configuration -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
 WORKDIR /app
-COPY --from=build /app/published-web-api /app
-ENTRYPOINT [ "dotnet","/app/create.dll" ]
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "shortapi.dll"]
