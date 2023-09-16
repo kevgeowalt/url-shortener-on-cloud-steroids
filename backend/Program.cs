@@ -1,6 +1,7 @@
 // Azure App Configuration using statements
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using shared.Helpers;
 using shared.services;
 using Shortener;
 
@@ -20,6 +21,12 @@ builder.Services.AddSwaggerGen();
 
 //Microsoft Azure App Configuration (environment variables - MACOS)
 // export AppConfigurationEndpoint=MyValue
+
+if (builder.Environment.IsDevelopment())
+{
+    var path = Path.Combine(Directory.GetCurrentDirectory(), ".env");
+    Environmentmaster.LoadEnvironmentVariables(path);
+}
 
 string appConfigurationEndpoint = Environment.GetEnvironmentVariable("AppConfigurationEndpoint") ?? string.Empty;
 builder.Configuration.AddAzureAppConfiguration(appConfigurationEndpoint);
