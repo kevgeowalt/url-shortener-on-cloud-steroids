@@ -5,10 +5,6 @@ name: .NET
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ "development" ]
-  pull_request:
-    branches: [ "development" ]
     
 env:
   app-name: "urlapi"

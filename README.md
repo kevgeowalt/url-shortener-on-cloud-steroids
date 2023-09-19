@@ -1,79 +1,45 @@
-# Welcome to My Cloud Journey as a newbie ... somewhat 🤔
+# Learn how to integrate Azure Services into your .NET 6 projects
 
-## ℹ️ About Me
+## Embracing New Horizons 
 
-Hello there! Before I tell you about my journey learning Azure Cloud, let me first say I'm Kevoy Walters, an admirer of C# and .NET. I currently have over 3 years of professional expereince in the telecommunications and financial industries. I've had the privilege of working on a variety of projects with so many exceptional and brilliant people.
+I'm Kevoy Walters, an admirer of C# and .NET. I currently have four(4) years of professional expereince using ASP.NET, .NET Core and .NET Framework to create large scale enterprise projects. While I've always had a deep love for traditional software development, I recently embarked on an exciting journey that led me into the realms of cloud development and DevOps. The dynamic and ever-evolving nature of these fields intrigued me, and I decided to dive headfirst into learning more about how to inetgrate them in my daily taks.
 
-## ⬆️ Embracing New Horizons 
+## Sample Project
 
-While I've always had a deep love for traditional software development, I recently embarked on an exciting journey that led me into the realms of cloud development and DevOps. The dynamic and ever-evolving nature of these fields intrigued me, and I decided to dive headfirst into learning more about them.
+This project was a chance for me to immerse myself in cloud concepts. I intentionally designed the project in a way that forced me to utilize these principles, pushing me out of my comfort zone and into uncharted territory of cloud espcecailly containerization and DevOps.
+The point of this project is not focus on its features but how those features are deployed, hosted and managed in the Cloud through Microsoft Azure.
 
-## ☁️ Discovering Cloud Development and DevOps
+Tech Stack:
+1. .NET 6
 
-As I delved into cloud development and DevOps, I realized the immense potential they hold to revolutionize the way we can build, deploy, and manage applications. The ability to scale effortlessly, ensure high availability, and streamline development workflows through automation left me both fascinated and inspired. I already had a close realtionshp with Micsoroft's primary programming language C# so I decided what better way to keep it in the family than using **Microsoft Azure** to satisify my curiosity.
-
-## 🆕 The Birth of a New Project
-
-To put my newfound passion and knowledge into practice, I embarked on an exciting project. This project was not just another coding exercise; it was a chance for me to immerse myself in cloud development and DevOps concepts. I intentionally designed the project in a way that forced me to utilize these principles, pushing me out of my comfort zone and into uncharted territory.
-The point of this project is not focus on its features but how those features are deployed,hosted and managed in the Cloud through Azure.
-The project focuses on using the following Azure Cloud Services:
-1. **App Configuration** _for appsettings and connection string centralization_
-2. **App Services** _platform as a service (PAAS) solution that offers hosting capabilities for apps ruuning on multiple frameworks. The framework used to developed this proejct was .NET 6 LTS._
-3. **API Managament** _service for publishing, securing and managing our web services_
-4. **Storage Accounts (Table Storage)** _for storing and accessing our data through partitions and keys_
-5. **Azure DevOps - Build Pipelines** _for composing a set of tasks, each of which is performed as a step when our application (API) builds through continuous deployment._
-6. **Azure DevOps - Release Pipelines** - _for deployinf the artifacts after a successufl build_
-7. **Web App Deployment center** _for managaing local GIT deployments from your local machine_
-8. **Web App Deployment Slots** _for managing traffic bewteen different environments and to verify relasese before swapping to production_
-9. **Functions and Storage Queues**
+Cloud Services used:
+1. **Azure App Configuration** 
+4. **Storage Accounts (Azure Table Storage)**
 10. **Azure CLI**
-11. **Managed Identitiy / Azure Active Directory (DefaultAzureCredential)**
-
-**Architecture Overwiew**
-![](/images-readme/UrlShortener.drawio.png)
+11. **Managed Identitiy / (C# DefaultAzureCredential class)**
+12. **Azure Container Registry**
+13. **Azure Container Apps**
+14. **Docker**
+15. **Github Actions for Continuous Deployment**
 
 ## 💡 What to Expect in This Repository
 
-In this GitHub repository, you'll find the result of my endeavors. I've documented my journey, sharing insights, challenges, and solutions that I encountered along the way. You'll find code snippets, configuration files, and perhaps even a few 'Aha!' moments that I experienced as I navigated through cloud services, containerization, continuous integration, and more.
+In this GitHub repository, you'll find the result of my endeavors and the demonstration of the skills I acquired while completing this project. I've documented my journey, sharing insights, challenges, and solutions that I encountered along the way. You'll find code snippets, deployment scripts, Infrastructure as Code as I navigated through cloud services, containerization, continuous integration, and more. The goal of this project is to demonstrate my knowledge and practical experience with working in Azure Cloud. 
 
-## ✅ Join Me on this Adventure
+## Run locally
 
-Whether you're an experienced developer, a fellow .NET enthusiast, or someone curious about cloud development and DevOps, I invite you to join me on this adventure. Feel free to explore the repository, clone the project, or even contribute your insights and suggestions. Let's learn and grow together as we embrace the exciting world of cloud development and DevOps!
+> Download and install the .NET 6 SDK
+#### Check if everything was installed correctly
+Once you've installed, open a new terminal and run the following command: `dotnet`  
 
-## Using Azure to centralize configurations
+> Clone this github project
+#### Download a copy of the project  
+Open the terminal and run the following command: `git clone https://github.com/kevgeowalt/url-shortener-on-cloud-steroids.git`  
+Once the command finish executing, take a look through the folder structure and read through the files  
 
-Since the services offered by Microsoft Azure are in the cloud (accessed over the internet), it is quite impossible to interact with these services without establishing some form of connection from your local machine to the hosted service. These conenctions are usually achieved through either connection strings, Shared Access Signatures or Access Keys. There is also another method of connection that I will talk about later called _**Managed Identity**_. For storing key-value pairs configuration, this project used Azure App Configuration which provides a service to centrally store and secure configuration settings across multiple components.
+> Run the backend service
+In your terminal run the command: `dotnet run --project "backend/shortapi.csproj"`
 
-#### To store connection string for Azure App Configuration service locally:
-``` c#
-dotnet user-secrets init
-dotnet user-secrets set ConnectionStrings:AppConfig "<your_connection_string>"
-```
+At this point, your terminal should be filled with errors realating to missing envriomental variables and aunauthroized access to azure resources. Dont worry! We will fix them in the next steps.
 
-#### To connect and use Azure App Configuration using .NET 6
-``` c#
-// First create a class to match the values that will be stored in Azure App Configuration explorer
-public class Settings
-{
-    public string Storage001 { get; set; } = string.Empty;
-}
-
-// Read configuration string from local secret 
-string appConnectionString = builder.Configuration.GetConnectionString("AppConfig");
-
-// Add the Azure service to the configuration builder
-builder.Configuration.AddAzureAppConfiguration(appConnectionString);
-
-// Registers the configuration option which Settings class will bind against
-builder.Services.Configure<Settings>(builder.Configuration.GetSection("UrlShort:Settings"));
-
-// use values through dependency injection
-private readonly IOptionsSnapshot<Settings> options;
-
-public Controller(IOptionsSnapshot<Settings> options)
-{
-    this.options = options;
-}
-```
-## Continious Integration/Continuous Deployment (CI/CD)
-#### GitHub Actions
+## Run in a Dockerized Environment
